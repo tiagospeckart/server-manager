@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.1.2"
 	id("io.spring.dependency-management") version "1.1.2"
+	id("com.avast.gradle.docker-compose") version "0.14.2"
 }
 
 group = "io.tms"
@@ -32,6 +33,19 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
+dockerCompose {
+	isRequiredBy(tasks.named("test"))
+	useComposeFiles = listOf("docker-compose.yml")
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.register("myComposeUp") {
+	dependsOn("dockerComposeUp")
+}
+
+tasks.register("myComposeDown") {
+	dependsOn("dockerComposeDown")
 }
