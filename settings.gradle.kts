@@ -1,1 +1,1 @@
-rootProject.name = "server manager"
+rootProject.name = "server-manager"

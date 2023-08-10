@@ -1,14 +1,21 @@
-version: '3.1'
+version: '3.8'
 services:
   postgres:
     image: postgres
     ports:
       - "5433:5432"
     environment:
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: postgres-docker
+      POSTGRES_PASSWORD: postgres-pass
       POSTGRES_DB: server-manager
 
-volumes:
-  db-scripts:
-
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/server-manager
+      SPRING_DATASOURCE_USERNAME: postgres-docker
+      SPRING_DATASOURCE_PASSWORD: postgres-pass
