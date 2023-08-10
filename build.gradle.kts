@@ -2,7 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.1.2"
 	id("io.spring.dependency-management") version "1.1.2"
-	id("com.avast.gradle.docker-compose") version "0.14.2"
+	id("com.avast.gradle.docker-compose") version "0.17.4"
 }
 
 group = "io.tms"

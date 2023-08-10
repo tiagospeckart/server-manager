@@ -16,6 +16,6 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5433/server-manager
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/server-manager
       SPRING_DATASOURCE_USERNAME: postgres-docker
       SPRING_DATASOURCE_PASSWORD: postgres-pass
