@@ -33,4 +33,4 @@ docker compose up
 ```
 
 ## License
-[MIT](LICENSE.md)
+[MIT](LICENSE)
