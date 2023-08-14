@@ -1,0 +1,14 @@
+
+spring:
+  datasource:
+    password: postgres-pass
+    url: jdbc:postgresql://db:5433/server-manager
+    username: postgres-docker
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+      show-sql: true
