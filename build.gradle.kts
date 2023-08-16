@@ -35,37 +35,32 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+// Configuração padrão do dockerCompose para build
 dockerCompose {
-	isRequiredBy(tasks.named("test"))
 	useComposeFiles = listOf("docker-compose.yml")
 }
 
-tasks.withType<Test> {
-	useJUnitPlatform()
-}
-
-tasks.register("updateDockerCompose") {
-	doLast {
-		val dockerComposeFile = file("docker-compose.yml")
-		val content = dockerComposeFile.readText()
-		val updatedContent = content.replace("__TAG__", project.version.toString())
-		dockerComposeFile.writeText(updatedContent)
-	}
-}
-
-tasks.register("dockerBuild") {
-	dependsOn("updateDockerCompose") // Certifica-se de que a tarefa updateDockerCompose seja executada primeiro
-	doLast {
-		exec {
-			commandLine("docker", "build", "--build-arg", "TAG=${project.version}", "-t", "server-manager-app:${project.version}", ".")
-		}
-	}
-}
-
 tasks.register("myComposeUp") {
-	dependsOn("dockerBuild", "dockerComposeUp") // Certifica-se de que a tarefa dockerBuild seja executada antes de dockerComposeUp
+	dependsOn("dockerComposeUp")
 }
 
 tasks.register("myComposeDown") {
 	dependsOn("dockerComposeDown")
 }
+
+tasks.register("composeUpForTest") {
+	dependsOn("dockerComposeUp")
+	doFirst {
+		dockerCompose.useComposeFiles = listOf("docker-compose-test.yml") // Arquivo para testes
+	}
+}
+
+tasks.register("composeDownForTest") {
+	dependsOn("dockerComposeDown")
+}
+
+tasks.withType<Test> {
+	dependsOn("composeUpForTest")
+	finalizedBy("composeDownForTest")
+	useJUnitPlatform()
+}bu

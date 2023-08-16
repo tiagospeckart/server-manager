@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  postgres:
+  db:
     image: postgres
     ports:
       - "5433:5432"
@@ -9,14 +9,14 @@ services:
       POSTGRES_PASSWORD: postgres-pass
       POSTGRES_DB: server-manager
 
-  app:
-    image: server-manager-app:__TAG__
+  backend:
+    image: server-manager-app
     build: .
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
+      - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/server-manager
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/server-manager
       SPRING_DATASOURCE_USERNAME: postgres-docker
       SPRING_DATASOURCE_PASSWORD: postgres-pass

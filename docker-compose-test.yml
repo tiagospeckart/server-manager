@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  db-test:
+    image: postgres
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres-test
+      POSTGRES_PASSWORD: postgres-test-pass
+      POSTGRES_DB: server-manager-test
