@@ -22,12 +22,12 @@ If you don't have Docker installed, you'll need to follow additional steps to se
 
 Follow these steps to install the project:
 
-1. Clone the Repository:
-```shell 
-git clone https://github.com/tiagospeckart/server-manager.git
-```
+1. Clone the Repository: `git clone https://github.com/tiagospeckart/server-manager.git`
 2. Navigate to the Project Directory: `cd server-manager`
-3. **Start the Application**: Run the application with PostgreSQL and Spring Boot using Docker:
+3. `./gradlew build`
+4. `docker build -t back-server-manager:latest .`
+5. `docker-compose up`
+6**Start the Application**: Run the application with PostgreSQL and Spring Boot using Docker:
 ```shell 
 docker compose up
 ```
