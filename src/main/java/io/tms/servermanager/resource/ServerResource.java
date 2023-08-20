@@ -7,9 +7,11 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StreamUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.Map;
 
@@ -94,11 +96,13 @@ public class ServerResource {
     }
 
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
-    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
-        ClassPathResource imgFile = new ClassPathResource("images/" + fileName);
-        if (!imgFile.exists()) {
-            throw new IOException("File not found");
-        }
-        return Files.readAllBytes(imgFile.getFile().toPath());
-    }
+	public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
+		ClassPathResource imgFile = new ClassPathResource("images/" + fileName);
+		if (!imgFile.exists()) {
+			throw new IOException("File not found");
+		}
+		try (InputStream in = imgFile.getInputStream()) {
+			return StreamUtils.copyToByteArray(in);
+		}
+	}
 }
