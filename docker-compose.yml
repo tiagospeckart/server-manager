@@ -12,9 +12,9 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
   backend:
-    image: back-server-manager:latest
+    image: backend-server-manager:latest
     build:
-      context: .
+      context: ./backend-server-manager/
       args:
         VERSION: 0.0.1-SNAPSHOT
     ports:
