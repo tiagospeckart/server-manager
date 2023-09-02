@@ -4,6 +4,7 @@ import { Observable, catchError, map, of, startWith } from 'rxjs';
 import { AppState } from './interface/app-state';
 import { CustomResponse } from './interface/custom-response';
 import { DataState } from './enum/data.state.enum';
+import { faRoute, faTrash, faCirclePlus, faTableTennisPaddleBall } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,12 @@ import { DataState } from './enum/data.state.enum';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
+  // FA Icons
+  faRoute = faRoute;
+  faThrash = faTrash;
+  faCirclePlus = faCirclePlus;
+  faTableTennisPaddleBall = faTableTennisPaddleBall;
+
   appState$: Observable<AppState<CustomResponse>>;
   constructor(private serverService: ServerService) {}
 
