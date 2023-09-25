@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.tms.servermanager.ServerApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-08-29T22:02:21" hostname="fedora" time="0.611">
+  <properties/>
+  <testcase name="contextLoads()" classname="io.tms.servermanager.ServerApplicationTests" time="0.611"/>
+  <system-out><![CDATA[19:02:16.471 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [io.tms.servermanager.ServerApplicationTests]: ServerApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+19:02:16.608 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration io.tms.servermanager.ServerApplication for test class io.tms.servermanager.ServerApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.2)
+
+2023-08-29T19:02:17.167-03:00  INFO 7771 --- [    Test worker] i.t.s.ServerApplicationTests             : Starting ServerApplicationTests using Java 20.0.1 with PID 7771 (started by tiago in /home/tiago/Documentos/Projetos/server-manager/backend-server-manager)
+2023-08-29T19:02:17.169-03:00  INFO 7771 --- [    Test worker] i.t.s.ServerApplicationTests             : No active profile set, falling back to 1 default profile: "default"
+2023-08-29T19:02:17.973-03:00  INFO 7771 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-08-29T19:02:18.080-03:00  INFO 7771 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 1 JPA repository interfaces.
+2023-08-29T19:02:18.778-03:00  INFO 7771 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-08-29T19:02:18.863-03:00  INFO 7771 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-08-29T19:02:18.867-03:00  INFO 7771 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-08-29T19:02:19.040-03:00  INFO 7771 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-08-29T19:02:19.186-03:00  INFO 7771 --- [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-08-29T19:02:19.208-03:00  INFO 7771 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-08-29T19:02:19.318-03:00  INFO 7771 --- [    Test worker] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (Receiver class org.h2.jdbc.JdbcConnection does not define or inherit an implementation of the resolved method 'abstract int getNetworkTimeout()' of interface java.sql.Connection.)
+2023-08-29T19:02:19.325-03:00  INFO 7771 --- [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2023-08-29T19:02:19.327-03:00  INFO 7771 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-08-29T19:02:19.354-03:00  WARN 7771 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000511: The 1.3.148 version for [org.hibernate.dialect.H2Dialect] is no longer supported, hence certain features may not work properly. The minimum supported version is 1.4.197. Check the community dialects project for available legacy versions.
+2023-08-29T19:02:19.596-03:00  INFO 7771 --- [    Test worker] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-08-29T19:02:20.238-03:00  INFO 7771 --- [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: 
+    create table server (
+        id bigint not null,
+        image_url varchar(255),
+        ip_address varchar(255),
+        memory varchar(255),
+        name varchar(255),
+        status tinyint check (status between 0 and 1),
+        type varchar(255),
+        primary key (id)
+    )
+Hibernate: 
+    alter table server 
+       drop constraint if exists UK_96tx503up4941ibvsnhh8itdi
+Hibernate: 
+    alter table server 
+       add constraint UK_96tx503up4941ibvsnhh8itdi unique (ip_address)
+Hibernate: 
+    create sequence server_seq start with 1 increment by 50
+2023-08-29T19:02:20.300-03:00  INFO 7771 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-08-29T19:02:20.955-03:00  WARN 7771 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-08-29T19:02:21.483-03:00  INFO 7771 --- [    Test worker] i.t.s.ServerApplicationTests             : Started ServerApplicationTests in 4.666 seconds (process running for 6.232)
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.image_url,
+        s1_0.ip_address,
+        s1_0.memory,
+        s1_0.name,
+        s1_0.status,
+        s1_0.type 
+    from
+        server s1_0 
+    where
+        s1_0.id=?
+Hibernate: 
+    select
+        server_seq.nextval
+Hibernate: 
+    insert 
+    into
+        server
+        (image_url,ip_address,memory,name,status,type,id) 
+    values
+        (?,?,?,?,?,?,?)
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.image_url,
+        s1_0.ip_address,
+        s1_0.memory,
+        s1_0.name,
+        s1_0.status,
+        s1_0.type 
+    from
+        server s1_0 
+    where
+        s1_0.id=?
+Hibernate: 
+    select
+        server_seq.nextval
+Hibernate: 
+    insert 
+    into
+        server
+        (image_url,ip_address,memory,name,status,type,id) 
+    values
+        (?,?,?,?,?,?,?)
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.image_url,
+        s1_0.ip_address,
+        s1_0.memory,
+        s1_0.name,
+        s1_0.status,
+        s1_0.type 
+    from
+        server s1_0 
+    where
+        s1_0.id=?
+Hibernate: 
+    insert 
+    into
+        server
+        (image_url,ip_address,memory,name,status,type,id) 
+    values
+        (?,?,?,?,?,?,?)
+Hibernate: 
+    select
+        s1_0.id,
+        s1_0.image_url,
+        s1_0.ip_address,
+        s1_0.memory,
+        s1_0.name,
+        s1_0.status,
+        s1_0.type 
+    from
+        server s1_0 
+    where
+        s1_0.id=?
+Hibernate: 
+    insert 
+    into
+        server
+        (image_url,ip_address,memory,name,status,type,id) 
+    values
+        (?,?,?,?,?,?,?)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
